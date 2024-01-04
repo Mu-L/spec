@@ -4,9 +4,9 @@
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>WebAssembly Web API</title>
   <meta content="ED" name="w3c-status">
-  <meta content="Bikeshed version fe5461827, updated Mon Dec 18 10:46:21 2023 -0800" name="generator">
+  <meta content="Bikeshed version 4416b18d5, updated Tue Jan 2 15:52:39 2024 -0800" name="generator">
   <link href="https://www.w3.org/TR/wasm-web-api-2/" rel="canonical">
-  <meta content="c7eef192b77125b88a4ab3ae7a944d10c0860f55" name="revision">
+  <meta content="48771711fabb3604fccf236f2bdb33afb0ad2aca" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -714,7 +714,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebAssembly Web API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-12-31">31 December 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-03">3 January 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -731,7 +731,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -792,9 +792,9 @@ and the <a href="https://www.w3.org/TR/wasm-web-api/">WebAssembly Web API</a>.
    <h2 class="heading settled" data-level="1" id="streaming-modules"><span class="secno">1. </span><span class="content">Streaming Module Compilation and Instantiation</span><a class="self-link" href="#streaming-modules"></a></h2>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->)]
 <c- b>partial</c-> <c- b>namespace</c-> <a class="idl-code" data-link-type="namespace" href="https://webassembly.github.io/spec/js-api/#namespacedef-webassembly" id="ref-for-namespacedef-webassembly"><c- g>WebAssembly</c-></a> {
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://webassembly.github.io/spec/js-api/#module" id="ref-for-module"><c- n>Module</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-webassembly-compilestreaming" id="ref-for-dom-webassembly-compilestreaming"><c- g>compileStreaming</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://fetch.spec.whatwg.org/#response" id="ref-for-response"><c- n>Response</c-></a>> <dfn class="idl-code" data-dfn-for="WebAssembly/compileStreaming(source)" data-dfn-type="argument" data-export id="dom-webassembly-compilestreaming-source-source"><code><c- g>source</c-></code><a class="self-link" href="#dom-webassembly-compilestreaming-source-source"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://webassembly.github.io/spec/js-api/#module" id="ref-for-module"><c- n>Module</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-webassembly-compilestreaming" id="ref-for-dom-webassembly-compilestreaming"><c- g>compileStreaming</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://fetch.spec.whatwg.org/#response" id="ref-for-response"><c- n>Response</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="WebAssembly/compileStreaming(source)" data-dfn-type="argument" data-export id="dom-webassembly-compilestreaming-source-source"><code><c- g>source</c-></code></dfn>);
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://webassembly.github.io/spec/js-api/#dictdef-webassemblyinstantiatedsource" id="ref-for-dictdef-webassemblyinstantiatedsource"><c- n>WebAssemblyInstantiatedSource</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-webassembly-instantiatestreaming" id="ref-for-dom-webassembly-instantiatestreaming"><c- g>instantiateStreaming</c-></a>(
-      <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise③"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://fetch.spec.whatwg.org/#response" id="ref-for-response①"><c- n>Response</c-></a>> <dfn class="idl-code" data-dfn-for="WebAssembly/instantiateStreaming(source, importObject), WebAssembly/instantiateStreaming(source)" data-dfn-type="argument" data-export id="dom-webassembly-instantiatestreaming-source-importobject-source"><code><c- g>source</c-></code><a class="self-link" href="#dom-webassembly-instantiatestreaming-source-importobject-source"></a></dfn>, <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a> <dfn class="idl-code" data-dfn-for="WebAssembly/instantiateStreaming(source, importObject), WebAssembly/instantiateStreaming(source)" data-dfn-type="argument" data-export id="dom-webassembly-instantiatestreaming-source-importobject-importobject"><code><c- g>importObject</c-></code><a class="self-link" href="#dom-webassembly-instantiatestreaming-source-importobject-importobject"></a></dfn>);
+      <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise③"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://fetch.spec.whatwg.org/#response" id="ref-for-response①"><c- n>Response</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="WebAssembly/instantiateStreaming(source, importObject), WebAssembly/instantiateStreaming(source)" data-dfn-type="argument" data-export id="dom-webassembly-instantiatestreaming-source-importobject-source"><code><c- g>source</c-></code></dfn>, <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="WebAssembly/instantiateStreaming(source, importObject), WebAssembly/instantiateStreaming(source)" data-dfn-type="argument" data-export id="dom-webassembly-instantiatestreaming-source-importobject-importobject"><code><c- g>importObject</c-></code></dfn>);
 };
 </pre>
    <div class="algorithm" data-algorithm="compileStreaming(source)" data-algorithm-for="WebAssembly"> The <dfn class="dfn-paneled idl-code" data-dfn-for="WebAssembly" data-dfn-type="method" data-export id="dom-webassembly-compilestreaming"><code>compileStreaming(<var>source</var>)</code></dfn> method, when invoked, returns the result of <a data-link-type="dfn" href="#compile-a-potential-webassembly-response" id="ref-for-compile-a-potential-webassembly-response">compiling a potential WebAssembly response</a> with <var>source</var>. </div>
@@ -1418,7 +1418,10 @@ let dfnPanelData = {
 "dca2de17": {"dfnID":"dca2de17","dfnText":"DOMException","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMException"},{"id":"ref-for-idl-DOMException\u2460"}],"title":"2. Serialization"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMException"},
 "dd57410d": {"dfnID":"dd57410d","dfnText":"CompileError","external":true,"refSections":[{"refs":[{"id":"ref-for-exceptiondef-compileerror"}],"title":"1. Streaming Module Compilation and Instantiation"}],"url":"https://webassembly.github.io/spec/js-api/#exceptiondef-compileerror"},
 "dom-webassembly-compilestreaming": {"dfnID":"dom-webassembly-compilestreaming","dfnText":"compileStreaming(source)","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-webassembly-compilestreaming"}],"title":"1. Streaming Module Compilation and Instantiation"}],"url":"#dom-webassembly-compilestreaming"},
+"dom-webassembly-compilestreaming-source-source": {"dfnID":"dom-webassembly-compilestreaming-source-source","dfnText":"source","external":false,"refSections":[],"url":"#dom-webassembly-compilestreaming-source-source"},
 "dom-webassembly-instantiatestreaming": {"dfnID":"dom-webassembly-instantiatestreaming","dfnText":"instantiateStreaming(source, importObject)","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-webassembly-instantiatestreaming"}],"title":"1. Streaming Module Compilation and Instantiation"}],"url":"#dom-webassembly-instantiatestreaming"},
+"dom-webassembly-instantiatestreaming-source-importobject-importobject": {"dfnID":"dom-webassembly-instantiatestreaming-source-importobject-importobject","dfnText":"importObject","external":false,"refSections":[],"url":"#dom-webassembly-instantiatestreaming-source-importobject-importobject"},
+"dom-webassembly-instantiatestreaming-source-importobject-source": {"dfnID":"dom-webassembly-instantiatestreaming-source-importobject-source","dfnText":"source","external":false,"refSections":[],"url":"#dom-webassembly-instantiatestreaming-source-importobject-source"},
 "e3201629": {"dfnID":"e3201629","dfnText":"response","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-response-response"}],"title":"1. Streaming Module Compilation and Instantiation"}],"url":"https://fetch.spec.whatwg.org/#concept-response-response"},
 "eb5c4be3": {"dfnID":"eb5c4be3","dfnText":"Serializable","external":true,"refSections":[{"refs":[{"id":"ref-for-serializable"}],"title":"2. Serialization"}],"url":"https://html.spec.whatwg.org/multipage/structured-data.html#serializable"},
 "efd1ec5d": {"dfnID":"efd1ec5d","dfnText":"object","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-object"}],"title":"1. Streaming Module Compilation and Instantiation"}],"url":"https://webidl.spec.whatwg.org/#idl-object"},
@@ -1466,21 +1469,22 @@ function genDfnPanel(dfn, { dfnID, url, dfnText, refSections, external }) {
         mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
             `Info about the '${dfnText}' ${external?"external":""} reference.`),
         mk.a({href:url, class:"dfn-link"}, url),
-        mk.b({}, "Referenced in:"),
-        mk.ul({},
-            ...refSections.map(section=>
-                mk.li({},
-                    ...section.refs.map((ref, refI)=>
-                        [
-                            mk.a({ href: `#${ref.id}` },
-                                (refI == 0) ? section.title : `(${refI + 1})`
-                            ),
-                            " ",
-                        ]
+        refSections.length == 0 ? [] :
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({ href: `#${ref.id}` },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
                     ),
                 ),
             ),
-        ),
         genLinkingSyntaxes(dfn),
     );
 
