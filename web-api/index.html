@@ -4,9 +4,10 @@
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>WebAssembly Web API</title>
   <meta content="ED" name="w3c-status">
-  <meta content="Bikeshed version 4416b18d5, updated Tue Jan 2 15:52:39 2024 -0800" name="generator">
+  <meta content="Bikeshed version 4afc1fdf9, updated Tue May 28 15:43:17 2024 -0700" name="generator">
   <link href="https://www.w3.org/TR/wasm-web-api-2/" rel="canonical">
-  <meta content="724b3e7fc8338ef7b4acbbf5d834b4948f030bf5" name="revision">
+  <meta content="228549757b301c698c5588ec0d58b201b5777c92" name="revision">
+  <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -710,11 +711,12 @@ var[data-var-color="5"] { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DD
 var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebAssembly Web API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-19">19 January 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-09">9 June 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -723,8 +725,10 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
       <dd><a class="u-url" href="https://webassembly.github.io/spec/web-api/">https://webassembly.github.io/spec/web-api/</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/wasm-web-api-2/">https://www.w3.org/TR/wasm-web-api-2/</a>
+      <dt>Feedback:
+      <dd><a href="https://github.com/WebAssembly/spec/issues">GitHub</a>
       <dt class="editor">Editor:
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">Ms2ger</span> (<span class="p-org org">Igalia</span>)
+      <dd class="editor p-author h-card vcard" data-editor-id="46309"><span class="p-name fn">Ms2ger</span> (<span class="p-org org">Igalia</span>)
       <dt>Issue Tracking:
       <dd><a href="https://github.com/WebAssembly/spec/labels/wasm-web-api-2">GitHub Issues</a>
      </dl>
@@ -1071,7 +1075,7 @@ review, approval, and registration with IANA.</p>
     Implementers are encouraged to optimize. </p>
    </section>
   </div>
-<script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+  <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
@@ -1538,7 +1542,7 @@ function showDfnPanel(dfn) {
 
 function positionDfnPanel(dfnPanel) {
     const dfn = dfnPanel.dfn;
-    const dfnPos = getRootLevelAbsolutePosition(dfn);
+    const dfnPos = getBounds(dfn);
     dfnPanel.style.top = dfnPos.bottom + "px";
     dfnPanel.style.left = dfnPos.left + "px";
 
@@ -1607,40 +1611,19 @@ function refocusOnTarget(event) {
     });
 }
 
+// TODO: shared util
 // Returns the root-level absolute position {left and top} of element.
-function getRootLevelAbsolutePosition(el) {
-    const boundsRect = el.getBoundingClientRect();
-    let xPos = 0;
-    let yPos = 0;
-
-    while (el) {
-        let xScroll = el.scrollLeft;
-        let yScroll = el.scrollTop;
-
-        // Ignore scrolling of body.
-        if (el.tagName === "BODY") {
-            xScroll = 0;
-            yScroll = 0;
-        }
-        xPos += (el.offsetLeft - xScroll + el.clientLeft);
-        yPos += (el.offsetTop - yScroll + el.clientTop);
-
-        el = el.offsetParent;
-    }
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
     return {
-        left: xPos,
-        top: yPos,
-        right: xPos + boundsRect.width,
-        bottom: yPos + boundsRect.height,
-    };
-}
-
-function scrolledIntoView(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top > 0 &&
-        rect.bottom < window.innerHeight
-    );
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
 }
 
 function scrollToTargetAndHighlight(event) {
@@ -1649,10 +1632,6 @@ function scrollToTargetAndHighlight(event) {
         hash = decodeURIComponent(hash.substring(1));
         const dest = document.getElementById(hash);
         if (dest) {
-            // Maybe prevent default scroll.
-            if (scrolledIntoView(dest)) {
-                event.preventDefault();
-            }
             dest.classList.add('highlighted');
             setTimeout(() => dest.classList.remove('highlighted'), 1000);
         }
@@ -2020,7 +1999,7 @@ function setupRefHintEventListeners(link, refHint) {
 
 function positionRefHint(refHint) {
     const link = refHint.forLink;
-    const linkPos = getRootLevelAbsolutePosition(link);
+    const linkPos = getBounds(link);
     refHint.style.top = linkPos.bottom + "px";
     refHint.style.left = linkPos.left + "px";
 
@@ -2036,47 +2015,46 @@ function positionRefHint(refHint) {
 
 // TODO: shared util
 // Returns the root-level absolute position {left and top} of element.
-function getRootLevelAbsolutePosition(el) {
-    const boundsRect = el.getBoundingClientRect();
-    let xPos = 0;
-    let yPos = 0;
-
-    while (el) {
-        let xScroll = el.scrollLeft;
-        let yScroll = el.scrollTop;
-
-        // Ignore scrolling of body.
-        if (el.tagName === "BODY") {
-            xScroll = 0;
-            yScroll = 0;
-        }
-        xPos += (el.offsetLeft - xScroll + el.clientLeft);
-        yPos += (el.offsetTop - yScroll + el.clientTop);
-
-        el = el.offsetParent;
-    }
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
     return {
-        left: xPos,
-        top: yPos,
-        right: xPos + boundsRect.width,
-        bottom: yPos + boundsRect.height,
-    };
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function showRefHintListener(e) {
+    // If the target isn't in a link (or is a link),
+    // just ignore it.
+    let link = e.target.closest("a");
+    if(!link) return;
+
+    // If the target is in a ref-hint panel
+    // (aka a link in the already-open one),
+    // also just ignore it.
+    if(link.closest(".ref-hint")) return;
+
+    // Otherwise, show the panel for the link.
+    showRefHint(link);
+}
+
+function hideAllHintsListener(e) {
+    // If the click is inside a ref-hint panel, ignore it.
+    if(e.target.closest(".ref-hint")) return;
+    // Otherwise, close all the current panels.
+    hideAllRefHints();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.body.addEventListener("mouseover", e=>{
-        let link = e.target.closest("a");
-        if(link) showRefHint(link);
-    });
-    document.body.addEventListener("focus", e=>{
-        let link = e.target.closest("a");
-        if(link) showRefHint(link);
-    });
+    document.body.addEventListener("mousedown", showRefHintListener);
+    document.body.addEventListener("focus", showRefHintListener);
 
-    document.body.addEventListener("click", (e) => {
-        // If not handled already, just hide all link panels.
-        hideAllRefHints();
-    });
+    document.body.addEventListener("click", hideAllHintsListener);
 });
 
 window.addEventListener("resize", () => {
@@ -2139,7 +2117,7 @@ function findAlgoContainer(el) {
     return null;
 }
 function nameFromVar(el) {
-    return el.textContent.replace(/(\s|\xa0)+/, " ").trim();
+    return el.textContent.replace(/(\s|\xa0)+/g, " ").trim();
 }
 function colorCountsFromContainer(container) {
     const namesFromColor = Array.from({length:COLOR_COUNT}, x=>new Set());
